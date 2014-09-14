@@ -1,9 +1,7 @@
 def reverse_blocks(l, k):
     m = list()
-    for i in range(len(l) // k):
-        start_pos = i*k
-        end_pos = (i+1)*k
-        m += reversed(l[start_pos:end_pos])
+    for i in xrange(0, len(l), k):
+        m.extend(reversed(l[i:i+k]))
     return m
 
 l = range(10)
