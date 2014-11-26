@@ -6,6 +6,8 @@ def valid_phone_number(number):
     area_code = r'(\(\d{3}\)|\d{3})?'
     pnum = r'(\d{3})' + seperator + r'(\d{4})$'
 
+    import ipdb; ipdb.set_trace()
+
     if re.search(r'^'+area_code+seperator+pnum, number):
         return True
     return False
