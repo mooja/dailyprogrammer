@@ -27,7 +27,3 @@ def get_century(year):
 ])
 def test_get_century(input, expected):
     assert get_century(input) == expected
-
-
-if __name__ == '__main__':
-    pytest.main(str(__file__))

@@ -1,9 +1,9 @@
 import math
 
 
+from decimal import *
 from fractions import Fraction
 from math import factorial as fact
-from decimal import *
 
 def get_nth_decimal_digit_of_pi(i):
     quotient = i * (2**i) * (fact(i)**2)
