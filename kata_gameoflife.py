@@ -24,7 +24,6 @@ class Grid(object):
         left = min([x for x, y in self.positions])
         return (left, top)
 
-
     def get_botright_pos(self):
         bot = max([y for x, y in self.positions])
         right = max([x for x, y in self.positions])
@@ -56,7 +55,6 @@ class Grid(object):
         for row in range(self.topleft[0], self.botright[0]+1):
             row_cells = []
             for col in range(self.topleft[1], self.botright[1]+1):
-                # import ipdb; ipdb.set_trace()
                 if (row, col) in self.positions:
                     row_cells.append(1)
                 else:

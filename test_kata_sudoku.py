@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 import pytest
+
 from kata_sudoku import *
 
 
