@@ -9,7 +9,7 @@
 def pick_two(cash_total, item_list):
     """
     find two tiems in item_list whose sum is equal to cash_total
-    returns a tuple with indexes of two items, in sorted order
+    returns a tuple with indexes+1 of the two items, in sorted order
     """
     for i, item_candidate1 in enumerate(item_list):
         other_items = item_list[i+1:]
