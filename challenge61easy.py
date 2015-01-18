@@ -7,6 +7,7 @@
 
 from math import log
 from math import floor
+from itertools import imap
 
 
 def bin_rotate(number, rotations=1):
@@ -33,8 +34,8 @@ def bin_rotate_seq(number):
 
 
 def main():
-    for seq in map(bin_rotate_seq, (19, 205, 357)):
-        print ' -> '.join(map(str, seq))
+    for seq in imap(bin_rotate_seq, (19, 205, 357, 54321)):
+        print ' -> '.join(imap(str, seq))
 
 
 if __name__ == '__main__':
