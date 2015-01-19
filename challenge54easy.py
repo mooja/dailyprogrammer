@@ -11,7 +11,8 @@ from string import lowercase
 
 def matrix_cypher_encode(key, text):
     " returns a matrix cypher of text using key "
-    rows = [text[i:i+key] for i in range(0, len(text), key)]
+    end = (len(text) / key) * key
+    rows = [text[i:i+key] for i in range(0, end, key)]
     output = []
 
     for i in range(key):
@@ -26,10 +27,11 @@ def matrix_cypher_encode(key, text):
 
 def matrix_cypher_decode(key, text):
     colsize = len(text) / key
+    end = key * colsize 
     output = []
 
     for col_index in range(colsize):
-        for i in range(col_index, len(text), colsize):
+        for i in range(col_index, end, colsize):
             output.append(text[i])
 
     return ''.join(output)
