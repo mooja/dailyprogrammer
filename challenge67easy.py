@@ -37,7 +37,7 @@
 
 def reverse_int(n, bytes=32):
     as_bin_str = bin(n)[2:]
-    reversed_bin_str = ''.join(c for c in reversed(as_bin_str))
+    reversed_bin_str = as_bin_str[::-1]
     padded = '{:0<32}'.format(reversed_bin_str)
     reversed_int = int(padded, 2)
     return reversed_int
