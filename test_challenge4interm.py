@@ -14,6 +14,7 @@
 import pytest
 
 from challenge4interm import tokenize
+from challenge4interm import prefix_calc
 from challenge4interm import calculate
 
 
@@ -26,7 +27,17 @@ def test_tokenize(input, expected):
 
 
 @pytest.mark.parametrize("input, expected", [
+    ([1, 1, '+'], 2),
+    ([1, 4, 3, '-', '+'], 2),
+])
+def test_prefix_calc(input, expected):
+    assert prefix_calc(input) == expected
+
+
+@pytest.mark.parametrize("input, expected", [
     ('5*5+4', 29),
+    ('5*5-5', 20),
+    ('1*2*3-3*2*1', 0),
 ])
 def test_calculate(input, expected):
     assert calculate(input) == expected

@@ -3,13 +3,23 @@
 
 import operator
 import string
+import itertools
+
+from heapq import heappush
 
 
 operators = {
     '+': operator.add,
     '-': operator.sub,
     '*': operator.mul,
-    '/': operator.div,
+    '/': operator.div
+}
+
+precedence = {
+    '+': 2,
+    '-': 2,
+    '*': 4,
+    '/': 4
 }
 
 
@@ -30,16 +40,17 @@ def tokenize(expr):
     return tokens
 
 
-def infix_calc(tokens):
-    stack = []
+def prefix_calc(tokens):
+    stack = [0]
     for token in tokens:
         if isinstance(token, int):
             stack.append(token)
         if isinstance(token, str):
             a = stack.pop()
             b = stack.pop()
-            result = operators[token](a, b)
+            result = operators[token](b, a)
             stack.append(result)
+    return stack[-1]
 
 
 def calculate(expr):
@@ -51,9 +62,11 @@ def calculate(expr):
         if isinstance(token, int):
             out_queue.append(token)
         if isinstance(token, str):
+            while op_stack and precedence[op_stack[-1]] >= precedence[token]:
+                out_queue.append(op_stack.pop())
             op_stack.append(token)
 
     while op_stack:
         out_queue.append(op_stack.pop())
 
-    return ''.join(out_queue)
+    return prefix_calc(out_queue)
