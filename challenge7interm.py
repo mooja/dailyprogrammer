@@ -2,51 +2,50 @@
 # encoding: utf-8
 
 
-import math
-
-
 from turtle import *
 
 
-def triangle_up(x, y, height):
-    up()
-    goto(x, y - height)
+def triangle_up(side_length):
     down()
+    right(60)
     for i in range(3):
-        forward(height)
-        left(120)
-    up()
-    goto(x, y)
-
-    sub_height = height / 2.0
-    sub_y = y - (sub_height * (math.sqrt(3.0) / 2.0))
-    sub_x = x + height - (sub_height * (math.sqrt(3.0) / 2.0))
-    triangle_down(sub_x, sub_y, sub_height)
-
-
-def triangle_down(x, y, height):
-    up()
-    goto(x, y)
-    down()
-    for i in range(3):
-        forward(height)
+        forward(side_length)
         right(120)
+    left(60)
     up()
-    goto(x, y)
 
 
-def square(x, y, height):
-    up()
-    goto(x, y)
-    down()
-    for i in range(4):
-        forward(height)
-        right(90)
-    up()
+def triangle_up_recurse(side_len, max_len=10):
+    pos = position()
+    pque = [(pos, side_len)]
+    while pque:
+        pos, len = pque.pop(0)
+        half_len = len / 2.0
+        if len < max_len:
+            continue
+
+        up()
+        goto(pos)
+        pque.append((position(), half_len))
+
+        down()
+        setheading(0)
+        right(60)
+        forward(half_len)
+        pque.append((position(), half_len))
+        forward(half_len)
+        right(120)
+        forward(len)
+        right(120)
+        forward(half_len)
+        pque.append((position(), half_len))
+        forward(half_len)
 
 
 if __name__ == '__main__':
+    speed(0)
     color('red', 'yellow')
-    square(0, 0, 100)
-    triangle_up(0, 0, 100)
+    up()
+    goto(-300, 300)
+    triangle_up_recurse(600, 5)
     done()
