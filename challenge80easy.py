@@ -17,12 +17,9 @@
 #
 # February.18.2015
 
-from collections import Counter
-
 
 def is_anagram(w1, w2):
-    counter1, counter2 = Counter(w1.upper()), Counter(w2.upper())
-    return counter1.most_common() == counter2.most_common()
+    return sorted(w1) == sorted(w2)
 
 
 def anagrams(word):
@@ -36,5 +33,9 @@ def anagrams(word):
                     if len(dword) == len(word)
                        and dword != word
                        and is_anagram(word, dword))
-
         return list(anagrams)
+
+
+if __name__ == '__main__':
+    for word in anagrams('TRIANGLE'):
+        print word,
