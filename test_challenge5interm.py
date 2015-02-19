@@ -25,4 +25,5 @@ from challenge5interm import nanagrams
     ('one eno two three eerht', 2),
 ])
 def test_nanagrams(input, expected):
+    input = input.strip().split()
     assert nanagrams(input) == expected

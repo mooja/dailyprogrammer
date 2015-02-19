@@ -30,9 +30,6 @@ from challenge68easy import is_palindrome
 @pytest.mark.parametrize("input, expected", [
     (2, True),
     (3, True),
-    (4, False),
-    (5, True),
-    (6, False),
     (7, True),
     (8, False),
 ])
@@ -43,8 +40,6 @@ def test_is_prime(input, expected):
 @pytest.mark.parametrize("input, expected", [
     (1, True),
     (2, True),
-    (10, False),
-    (11, True),
     (21, False),
     (22, True),
 ])
@@ -55,10 +50,6 @@ def test_is_palindrome(input, expected):
 @pytest.mark.parametrize("input, expected", [
     (13, True),
     (17, True),
-    (31, True),
-    (3, False),
-    (4, False),
-    (14, False),
     (19, False),
 ])
 def test_is_emirp(input, expected):

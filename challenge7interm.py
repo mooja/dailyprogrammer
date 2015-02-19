@@ -26,26 +26,19 @@ def triangle_up_recurse(side_len, max_len=10):
 
         up()
         goto(pos)
-        pque.append((position(), half_len))
-
-        down()
         setheading(0)
         right(60)
-        forward(half_len)
-        pque.append((position(), half_len))
-        forward(half_len)
-        right(120)
-        forward(len)
-        right(120)
-        forward(half_len)
-        pque.append((position(), half_len))
-        forward(half_len)
+        down()
+        for i in xrange(3):
+            pque.insert(0, (position(), half_len))
+            forward(half_len)
+            right(120)
 
 
 if __name__ == '__main__':
     speed(0)
     color('red', 'yellow')
     up()
-    goto(-300, 300)
-    triangle_up_recurse(600, 5)
+    goto(-200, 200)
+    triangle_up_recurse(600, 4)
     done()
