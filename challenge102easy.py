@@ -54,11 +54,16 @@ def unpackDiceNotation(dndstr):
 
 
 def generateRoll(A, B, C):
-    """generateRoll: Generate Number from A to B and add C to the result
+    """generateRoll: Generate Number from 1 to B and add C to the result, A
+                     times
 
     :returns: integer result
     """
-    return choice(range(A, B + 1)) + C
+
+    total = 0
+    for i in range(A):
+        total += choice(range(1, B+1)) + C
+    return total
 
 
 def test_generateRoll():
