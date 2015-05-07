@@ -47,7 +47,7 @@ def unpackDiceNotation(dndstr):
 
     if A == '':  # if A is missing, set it to '1'
         A = '1'
-    if C == '':
+    if C is None:
         C = '0'
     if C.startswith('+'):  # remove possible '+' before converting C to integer
         C = C[1:]
