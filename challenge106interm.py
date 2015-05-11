@@ -119,6 +119,10 @@ def main():
         jug_state_queue.extend(gen_new_jug_states(jug_state))
 
 
+
+if __name__ == '__main__':
+    main()
+
     # output:
 
     # initial
