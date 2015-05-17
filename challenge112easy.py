@@ -31,7 +31,9 @@ def is_wellformed(url):
 def iter_query_items(urlstring):
     url_obj = urlparse(urlstring, allow_fragments=False)
 
-    for key, val in (query.split('=') for query in url_obj.query.split('&')):
+    for key, val in (query.split('=', 1)
+                     for query in url_obj.query.split('&')
+                         if query):
         yield key, val
 
 
