@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+     <!-- Daily Programmer Challenge 122 Easy -->
+
+     <!-- http://www.reddit.com/r/dailyprogrammer/comments/1aih0v/031813_challenge_122_easy_words_with_ordered/ -->
+
+     <!-- May.27.2015 -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Challenge 122 Esy</title>
+    </head>
+    <body>
+        <h2> Ordered Vowel Words </h2>
+        <ul>
+        <script type="text/javascript" charset="utf-8">
+            function is_vowel(letter) {
+                return 'aeiouy'.indexOf(letter) != -1;
+            }
+
+            function has_ordered_vowels(word) {
+                var word_vowels = word.split('').filter(is_vowel).join('');
+                return word_vowels == String(word_vowels).split('').sort().join('');
+            }
+            
+            var words = ["abcdefghi", "ihgfedcba", "abracadabra", "max", "jay", "aaaaaaaaai", "aaio", "a", "i", "zqwtt"];
+            words.filter(has_ordered_vowels).map(function (w) {
+                document.write("<li>" + w + "</li>");
+            });
+        </script>
+        </ul>
+    </body>
+</html>
