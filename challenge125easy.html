@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Challenge 125: Word Analytics</title>
+        <style type="text/css" media="screen">
+            textarea, dl {
+                display: block;
+                margin: 0 auto;
+            }
+            dl {
+                text-align: center;
+            }
+            dd {
+                font-size: 16px;
+                font-weight: 500;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="" style="textarea {margin: 0 auto;}">
+            <textarea id="text" name="" cols="80" rows="20">Dolor fuga mollitia modi quia quasi, consectetur quisquam dolore. Cumque sequi aspernatur porro obcaecati optio exercitationem itaque culpa itaque dolorum sapiente repellendus sapiente natus ipsum? Reprehenderit praesentium at tempora qui perferendis rerum. Nemo odit accusantium repellendus voluptatibus nam, aut praesentium. Dolore repellendus aliquid assumenda perferendis asperiores dolorum voluptatum numquam. Alias quos expedita voluptatem pariatur quos nostrum eligendi. Earum praesentium reprehenderit dolores mollitia eum! Veniam unde recusandae porro laborum quod? Nostrum incidunt id assumenda ex ex fuga. Vero possimus illo quam officiis cumque obcaecati inventore. Ea quasi molestiae ut corporis laudantium, consequuntur. Sed quod minus nam laudantium vero, sit dicta? Cumque.</textarea>
+        </form>
+        <hr>
+        <dl>
+            <dt>Number of Words</dt>
+            <dd id="nwords"> A lot!</dd>
+            <dt>Number of Letters</dt>
+            <dd id="nletters"></dd>
+            <dt>Number of Symbols</dt>
+            <dd id="nsymbols"></dd>
+        </dl>
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function nwords(text) {
+                var matches = text.match(/\S+/g, text)
+                if (matches)
+                    return matches.length;
+                return 0;
+            }
+
+            function nletters(text) {
+                var matches = text.match(/[a-z]/gi, text)
+                if (matches)
+                    return matches.length;
+                return 0;
+            }
+
+            function nsymbols(text) {
+                var matches = text.match(/[^\sa-z0-9]/gi, text)
+                if (matches)
+                    return matches.length;
+                return 0;
+            }
+
+            function most_common_words(nwords, text) {
+                var wordCounts = {};
+                var words = str.split(/\b/);
+
+                for(var i = 0; i < words.length; i++)
+                    wordCounts["_" + words[i].toLowerCase()] = (wordCounts["_" + words[i].toLowerCase()] || 0) + 1;
+
+                var most_common_words = []
+                var sorted_keys = Object.keys(wordCounts).sort()
+            }
+
+            function most_common_letters(nletters, text) {
+            }
+        </script>
+        <script>
+$( document ).ready(function() {
+    $("#text").keyup(function () {
+        $("#nwords").text(nwords($("#text").val()));
+        $("#nletters").text(nletters($("#text").val()));
+        $("#nsymbols").text(nsymbols($("#text").val()));
+    });
+    $("#text").keyup();
+});
+        </script>
+    </body>
+</html>
