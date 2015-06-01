@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width">
         <title>Challenge 125: Word Analytics</title>
         <style type="text/css" media="screen">
-            textarea, dl {
+            textarea {
                 display: block;
                 margin: 0 auto;
             }
@@ -30,6 +30,10 @@
             <dd id="nletters"></dd>
             <dt>Number of Symbols</dt>
             <dd id="nsymbols"></dd>
+            <dt>Most Common Words:</dt>
+            <dd id="mostcommonwords"></dd>
+            <dt>Most Common Letters:</dt>
+            <dd id="mostcommonletters"></dd>
         </dl>
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" charset="utf-8">
@@ -54,18 +58,48 @@
                 return 0;
             }
 
-            function most_common_words(nwords, text) {
-                var wordCounts = {};
-                var words = str.split(/\b/);
+            function most_common_words(text) {
+                var wordCounts = Object.create(null);
+                var words = text.split(/\b/);
 
-                for(var i = 0; i < words.length; i++)
-                    wordCounts["_" + words[i].toLowerCase()] = (wordCounts["_" + words[i].toLowerCase()] || 0) + 1;
+                for (var i = 0; i < words.length; i++)
+                    wordCounts[words[i].toLowerCase()] = (wordCounts[words[i].toLowerCase()] || 0) + 1;
 
-                var most_common_words = []
-                var sorted_keys = Object.keys(wordCounts).sort()
+                // transform object into array, then sort by word count
+                var sortable = [];
+                for (var key in wordCounts)
+                    sortable.push([key, wordCounts[key]]);
+                sortable.sort(function (a, b) { return a[1] < b[1] });
+
+                // remove all punctuation and non-alphanumeric words
+                sorted_words = sortable.filter(function (word) {
+                    return word[0].match(/\w+/);
+                });
+
+                // slice top three elements, return second item, concatenate
+                return sorted_words.slice(0, 3).map(function (array) { return array[0]; }).join(' ');
             }
 
-            function most_common_letters(nletters, text) {
+            function most_common_letters(text) {
+                var wordCounts = Object.create(null);
+                var words = text.match(/\w/gi);
+
+                for (var i = 0; i < words.length; i++)
+                    wordCounts[words[i].toLowerCase()] = (wordCounts[words[i].toLowerCase()] || 0) + 1;
+
+                // transform object into array, then sort by word count
+                var sortable = [];
+                for (var key in wordCounts)
+                    sortable.push([key, wordCounts[key]]);
+                sortable.sort(function (a, b) { return a[1] < b[1] });
+
+                // remove all punctuation and non-alphanumeric words
+                sorted_words = sortable.filter(function (word) {
+                    return word[0].match(/\w/);
+                });
+
+                // slice top three elements, return second item, concatenate
+                return sorted_words.slice(0, 3).map(function (array) { return array[0]; }).join(' ');
             }
         </script>
         <script>
@@ -74,6 +108,8 @@ $( document ).ready(function() {
         $("#nwords").text(nwords($("#text").val()));
         $("#nletters").text(nletters($("#text").val()));
         $("#nsymbols").text(nsymbols($("#text").val()));
+        $("#mostcommonwords").text(most_common_words($("#text").val()));
+        $("#mostcommonletters").text(most_common_letters($("#text").val()));
     });
     $("#text").keyup();
 });
