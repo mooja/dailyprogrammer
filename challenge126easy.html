@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Challeng 126 Easy: Real World Merge Sort</title>
+    </head>
+    <body>
+        <script>
+            function swap(arr, index_a, index_b) {
+                var temp = arr[index_a];
+                arr[index_a] = arr[index_b];
+                arr[index_b] = temp;
+            }
+
+            function merge_a_into_b(a, b) {
+                // merge all items from a into beginning of b
+                for (var i = 0; i < a.length; i++)
+                    b[i] = a[i]
+
+                // do selection sort on b
+                var min; 
+                for (var i = 0; i < b.length; i++) {
+                    min = i;
+
+                    for (var j=i+1; j < b.length; j++) {
+                        if (b[j] < b[min])
+                            min = j;
+                    }
+                    if (i != min)
+                        swap(b, i, min);
+                }
+
+                return b;
+            }
+
+
+            var A = [692, 1, 32];
+            var B = [0, 0, 0, 14, 15, 123, 2431]
+            console.log(merge_a_into_b(A, B).join(', '))
+        </script>
+    </body>
+</html>
