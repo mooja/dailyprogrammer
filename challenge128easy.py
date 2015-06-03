@@ -14,7 +14,7 @@ def sum_digits(n):
         yield n
         if n < 10:
             break
-        n = sum(int(digit) for digit in abs(n))
+        n = sum(int(digit) for digit in str(n))
 
 
 def main():
