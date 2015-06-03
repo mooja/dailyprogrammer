@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Daily Programmer Challenge 127 Easy -->
+
+        <!-- http://www.reddit.com/r/dailyprogrammer/comments/1f7qp5/052813_challenge_127_easy_mccarthy_91_function/ -->
+
+        <!-- June.02.2015 -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Challenge 127 Easy</title>
+    </head>
+    <body>
+        <script>
+            function mccarthy(n) {
+
+                if (n > 100) {
+                    if (n === 101) 
+                        console.log((n-10) + " since " + n + " is greater than 100");
+                    else 
+                        console.log("M(" + (n-10) + ") since " + n + " is greater than 100");
+                    return n - 10;
+                }
+                console.log("M(M(" + (n+11) + ")) since " + n + " is equal to or less than 100");
+                return mccarthy(mccarthy(n+11));
+            }
+
+            console.log("M("+99+")");
+            var result = mccarthy(99);
+            console.log(String(result));
+
+        </script>
+    </body>
+</html>
