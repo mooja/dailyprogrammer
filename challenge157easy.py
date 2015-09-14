@@ -9,6 +9,9 @@
 # September.12.2015
 
 
+import re
+
+
 class TicTagGrid(object):
     def __init__(self, gridstr):
         self.grid = []
@@ -55,7 +58,21 @@ class TicTagGrid(object):
         return '\n'.join(lines)
 
 
+def winning_move(ch, grid_string):
+    locations = [m.start() for m in re.finditer('-', grid_string)]
+    possible_successors = []
+    for pos in locations:
+        grid_array = list(grid_string)
+        grid_array[pos] = ch
+        possible_successors.append(''.join(grid_array))
+
+    for gridstr in possible_successors:
+        if TicTagGrid(gridstr).victory_by(ch):
+            return 'Winning Move: {}'.format(gridstr)
+    return 'No Winning Move'
+
+
 if __name__ == '__main__':
-    g = TicTagGrid('--x-x-x--')
+    g = TicTagGrid('--x-x----')
     print(g)
-    print g.victory_by('x')
+    print winning_move('x', '--x-x----')
