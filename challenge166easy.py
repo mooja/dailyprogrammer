@@ -10,12 +10,13 @@
 
 import math
 
-G = 6.67e-17
+G = 6.67e-11
 
 
 def planetary_mass(radius, density):
-    total_volume = radius**3 * (4.0 / 3.0) * math.pi
-    return total_volume * density
+    total_volume = (4.0 / 3.0) * math.pi * radius**3
+    total_mass = total_volume * density
+    return total_mass
 
 
 def grav_force(mass_a, mass_b, distance):
@@ -23,16 +24,12 @@ def grav_force(mass_a, mass_b, distance):
 
 
 def main():
-    mercury = {'radius': 2439700, 
-               'density': 5427}
-    mass = planetary_mass(mercury['radius'], mercury['density'])
-    weight = grav_force(mass, 100, mercury['radius'])
-    print('RADIUS: {}, DENSITY: {}, MASS: {}, WEIGHT: {}'.format(
-        mercury['radius'],
-        mercury['density'],
-        mass,
-        weight
-    ))
+    object_mass = 100
+    mercury = {'radius': 3104500, 'density': 5009}
+    mercury_mass = planetary_mass(mercury['radius'], mercury['density'])
+    object_weight = grav_force(mercury_mass, object_mass, mercury['radius'])
+
+    print('Object weight on the surface of mercury: {:5.2f} newtons'.format(object_weight))
 
 
 if __name__ == "__main__":
