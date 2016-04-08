@@ -23,6 +23,7 @@
 # a random number using this syntax.
 
 import re
+import random
 
 from random import choice
 
@@ -62,9 +63,11 @@ def generateRoll(A, B, C):
     :returns: integer result
     """
 
+    i = 0
     total = 0
-    for i in range(A):
-        total += choice(range(1, B+1)) + C
+    while i < A:
+        i += 1
+        total += random.randrange(1, B+1) + C
     return total
 
 
@@ -78,4 +81,4 @@ def test_generateRoll():
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
-    test_generateRoll()
+    print generateRoll(50000000, 100000000, -5)

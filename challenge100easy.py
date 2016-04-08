@@ -11,6 +11,8 @@
 from datetime import datetime
 from datetime import timedelta
 
+def test_stuff(sadf):
+    pass
 
 def when2sleep(wakeup_datetime, cycle_minutes=90):
     """ takes in a wakeup datetime object and returns a list of four optimal

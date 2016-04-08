@@ -48,16 +48,8 @@ def text2leet(text, table, conv_chance=1.0):
 
 def main():
     l33t_table = make_trans_table("leet_table.txt")
-    text = """
-    I must not fear.
-    Fear is the mind-killer.
-    Fear is the little-death that brings total obliteration.
-    I will face my fear.
-    I will permit it to pass over me and through me.
-    And when it has gone past I will turn the inner eye to see its path.
-    Where the fear has gone there will be nothing. Only I will remain.
-    """
-    print text2leet(text, l33t_table, 0.3)
+    text = open("bible.txt").read()
+    print text2leet(text, l33t_table, 0.4)
 
 
 

@@ -13,7 +13,7 @@ import random
 
 
 FIRST_NAMES = ['jon', 'ned', 'cat', 'rob', 'sansa', 'robert', 'stannis']
-LAST_NAMES =  ['snow', 'stark', 'lannister', 'griffith', 'baratheon']
+LAST_NAMES = ['snow', 'stark', 'lannister', 'griffith', 'baratheon']
 
 
 def gen_student_record(nscores):
