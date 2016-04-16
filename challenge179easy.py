@@ -29,7 +29,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if not os.path.exists(args.filename):
-        print("File {} doesn't exist.".format(args.FILE))
+        print("File {} doesn't exist.".format(args.filename))
         exit()
 
     with Image.open(args.filename) as img:
