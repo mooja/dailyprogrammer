@@ -30,7 +30,7 @@ def generate_isbn():
     >>> all(isbn_is_valid(generate_isbn()) for _ in range(10))
     True
     """
-    remainder = 1
+    remainder = None
     while remainder != 0:
         random_digits = [random.randint(0, 9) for _ in range(10)]
         digits_isbn_sum = sum(n*(10-i) for i, n in enumerate(random_digits))
