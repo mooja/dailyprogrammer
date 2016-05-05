@@ -9,6 +9,7 @@
 # 05.May.2016
 
 import re
+import random
 
 
 def isbn_is_valid(isbn_str):
@@ -24,6 +25,23 @@ def isbn_is_valid(isbn_str):
     return sum(digits) % 11 == 0
 
 
+def generate_isbn():
+    """
+    >>> all(isbn_is_valid(generate_isbn()) for _ in range(10))
+    True
+    """
+    remainder = 1
+    while remainder != 0:
+        random_digits = [random.randint(0, 9) for _ in range(10)]
+        digits_isbn_sum = sum(n*(10-i) for i, n in enumerate(random_digits))
+        remainder = digits_isbn_sum % 11
+    isbn_str = '{}-{}{}{}{}-{}{}{}{}-{}'.format(*random_digits)
+    return isbn_str
+
+
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
+
+    for i in range(10):
+        print(generate_isbn())
