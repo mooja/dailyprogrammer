@@ -23,7 +23,7 @@ def collide_words(w1, w2):
     """
     left_counter = Counter(w1)
     left_counter.subtract(Counter(w2))
-    left_total = sum(n for k, n in left_counter.items())
+    left_total = sum(n for n in left_counter.values())
     return left_total
 
 
