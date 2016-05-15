@@ -10,16 +10,15 @@
 const readline = require('readline');
 const rl = readline.createInterface(process.stdin, process.stdout);
 
-var opposite = (ch) => {
-    const opposites = {
-        ' ': ' ',
-        'A': 'T',
-        'T': 'A',
-        'G': 'C',
-        'C': 'G',
-    };
-    return opposites[ch];
+const opposites = {
+    ' ': ' ',
+    'A': 'T',
+    'T': 'A',
+    'G': 'C',
+    'C': 'G',
 };
+
+var opposite = (ch) => opposites[ch];
 
 rl.on('line', (line) => {
     line = line.replace(/\n$/, '');
