@@ -7,11 +7,11 @@
 // 19 May 2016
 
 
-var constonants = 'bcdfghjklmnpqrstvwxyz';
-var constonants_re = new RegExp("([" + constonants + "])", 'ig');
-var decode_re = new RegExp("([" + constonants + "])o\\1", 'ig');
+var consonants = 'bcdfghjklmnpqrstvwxyz';
+var consonants_re = new RegExp("([" + consonants + "])", 'ig');
+var decode_re = new RegExp("([" + consonants + "])o\\1", 'ig');
 
-var encode = t => t.replace(constonants_re, '$1o$1');
+var encode = t => t.replace(consonants_re, '$1o$1');
 var decode = t => t.replace(decode_re, '$1');
 
 console.log(encode('Hello World!'));
