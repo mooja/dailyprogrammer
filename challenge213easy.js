@@ -70,13 +70,20 @@ function humanize_hex(n) {
     var fb_text = humanize_byte(first_byte);
     result.push(fb_text);
 
-    var endswith_bitey = fb_text.slice(-6) == '-bitey';
-    if(!(endswith_bitey))
+    // take care of first byte -bitey edge case
+    var fb_endswith_bitey = fb_text.slice(-6) == '-bitey';
+    if(!(fb_endswith_bitey))
       result.push('bitey');
   }
 
   var second_byte = n % 0x0100;
   var sb_text = humanize_byte(second_byte);
+
+  // take care of second byte -bitey edge case
+  var sb_endswith_bitey =  sb_text.slice(-6) == '-bitey';
+  if(sb_endswith_bitey)
+    sb_text = sb_text.slice(0, -6);
+
   result.push(sb_text);
   return result.join(' ');
 }
