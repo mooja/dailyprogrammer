@@ -32,6 +32,4 @@ output_lines.push('');
 output_lines.push('Flop: '+flop.map(card => `${card.r} of ${card.s}`).join(', '));
 output_lines.push(`Turn: ${turn.r} of ${turn.s}`);
 output_lines.push(`River: ${river.r} of ${river.s}`);
-
-
 console.log(output_lines.join('\n'));
