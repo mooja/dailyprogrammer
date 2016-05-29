@@ -7,6 +7,8 @@
 #
 # 28 May 2016
 
+import sys
+
 
 def get_positions(words):
     row, col = 0, 0
@@ -42,9 +44,9 @@ def display_positions(positions):
                 line.append(positions[(row, col)])
             else:
                 line.append(' ')
-        print(''.join(line))
+        yield(''.join(line)+'\n')
 
 if __name__ == "__main__":
     words = 'SHENANIGANS SALTY YOUNGSTER ROUND DOUBLET TERABYTE ESSENCE'.split()
     positions = get_positions(words)
-    display_positions(positions)
+    sys.stdout.writelines(display_positions(positions))
