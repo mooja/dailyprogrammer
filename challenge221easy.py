@@ -50,3 +50,20 @@ if __name__ == "__main__":
     words = 'SHENANIGANS SALTY YOUNGSTER ROUND DOUBLET TERABYTE ESSENCE'.split()
     positions = get_positions(words)
     sys.stdout.writelines(display_positions(positions))
+
+    # SHENANIGANS                   
+    #           A                   
+    #           L                   
+    #           T                   
+    #           YOUNGSTER           
+    #                   O           
+    #                   U           
+    #                   N           
+    #                   DOUBLET     
+    #                         E     
+    #                         R     
+    #                         A     
+    #                         B     
+    #                         Y     
+    #                         T     
+
