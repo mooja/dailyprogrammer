@@ -11,8 +11,9 @@ function factorize(n) {
     let factors = [];
     for(let i = 2; i <= n; i++) {
         if (n % i === 0) {
-            n = n / i;
             factors.push(i)
+            while(n % i === 0) 
+                n /= i;
         }
     }
     return factors;
