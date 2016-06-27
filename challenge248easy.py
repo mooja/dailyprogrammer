@@ -67,10 +67,8 @@ class Image(object):
 
         return img
 
-
     def point(self, color, row, col):
         self.grid[row][col] = color
-
 
     def line(self, color, r1, c1, r2, c2):
         dx = 1
@@ -80,37 +78,39 @@ class Image(object):
             dx = 0
             dy = 1 if r2 > r1 else -1
 
-        while int(r1) <= r2 and int(r1) <= r2:
+        while int(r1) <= r2 and int(c1) <= c2:
             self.point(color, int(r1), int(c1))
             r1 += dy
             c1 += dx
 
     def rect(self, color, r1, c1, height, width):
-        print('rect({}, {}, {}, {}'.format(color, r1, c1, height, width))
-        self.line(color, r1, c1, r1, c1+width)
-        self.line(color, r1, c1, r1+height, c1)
-        self.line(color, r1+height, c1, r1+height, c1+width)
-        self.line(color, r1, c1+width, r1+height, c1+width)
+        top_left = (r1, c1)
+        bot_right = (r1+height-1, c1+width-1)
+
+        self.line(color, r1, c1, r1, c1+width-1)
+        self.line(color, r1, c1, r1+height-1, c1)
+        self.line(color, r1+height-1, c1, r1+height-1, c1+width-1)
+        self.line(color, r1, c1+width-1, r1+height-1, c1+width-1)
 
     def pprint(self):
         print(self.fmt)
         print(self.width, self.height)
         print(225)
 
-        color_fmt = '{0:<3}{1:<3}{2:<3}'
+        color_fmt = '{0:<3} {1:<3} {2:<3}'
         for row in range(self.height):
             line = '  '.join(color_fmt.format(*color) for color in self.grid[row])
             print(line)
-            print()
 
 if __name__ == "__main__":
     instructions = """
-    5 3
-    point 0 0 255 0 0
-    line 100 100 100 0 2 2 4
+    400 300
+    rect 0 0 255 0 0 300 400
+    line 255 255 255 0 0 299 399
+    line 255 255 255 299 0 0 399
+    rect 200 200 0 100 150 100 100
+    point 0 0 0 150 200
     """
-    # rect 77 0 0 1 3 2 2
 
     img = Image.from_instructions(instructions)
     img.pprint()
-    img.point((77, 0, 0), 5, 3)
