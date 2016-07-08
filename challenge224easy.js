@@ -10,7 +10,7 @@
 // weak + breaks on big numbers, don't use in poker
 
 function lcg_factory(
-    seed, 
+    seed,
     modulus=Math.pow(2, 24), // returns random 3 bytes
     a=1140671485, // taken from visual basic
     c=2531011)    // taken from visual basic
@@ -23,7 +23,7 @@ function lcg_factory(
     return lgc;
 }
 
-Array.prototype.swap = function(i, j) 
+Array.prototype.swap = function(i, j)
 {
     let temp = this[i];
     this[i] = this[j];
