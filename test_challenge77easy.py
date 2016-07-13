@@ -3,7 +3,7 @@
 
 import pytest
 
-from dailyprogrammer.challenge77easy import morse
+from challenge77easy import morse
 
 
 @pytest.mark.parametrize("input, expected", [
