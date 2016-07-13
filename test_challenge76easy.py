@@ -17,7 +17,7 @@
 
 import pytest
 
-from dailyprogrammer.challenge76easy import titlecase
+from challenge76easy import titlecase
 
 
 @pytest.mark.parametrize("input, expected", [

@@ -5,7 +5,7 @@
 import pytest
 
 
-from dailyprogrammer.challenge80easy import anagrams
+from challenge80easy import anagrams
 
 
 @pytest.mark.parametrize("input, expected", [
