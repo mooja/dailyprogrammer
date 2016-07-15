@@ -43,12 +43,14 @@ function* combinations(seq, r) {
     let combination_candidate = perm.slice(0, r).sort();
     let has_been_seen = false;
     for (let seen_comb of seen)
-      if (_.isEqual(combination_candidate, seen_comb))
+      if (_.isEqual(combination_candidate, seen_comb)) {
         has_been_seen = true;
-    if (has_been_seen)
-      continue;
-    seen.push(combination_candidate);
-    yield combination_candidate;
+        break;
+      }
+    if (!has_been_seen) {
+      seen.push(combination_candidate);
+      yield combination_candidate;
+    }
   }
 }
 
