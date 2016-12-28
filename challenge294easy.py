@@ -8,7 +8,7 @@
 # 27 December 2016
 
 
-def scrabble(letters, word):
+def scrabble(tiles, word):
     """
     >>> scrabble("ladilmy", "daily")
     True
@@ -27,17 +27,42 @@ def scrabble(letters, word):
     >>> scrabble("b??????", "program")
     False
     """
-    letters = list(letters)
+    tiles = list(tiles)
     for ch in word:
-        if ch not in letters and '?' not in letters:
+        if ch not in tiles and '?' not in tiles:
             return False
-        if ch not in letters:
-            letters.remove('?')
+        if ch not in tiles:
+            tiles.remove('?')
         else:
-            letters.remove(ch)
+            tiles.remove(ch)
     return True
 
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
+    inputs = [
+        "dcthoyueorza",
+        "uruqrnytrois",
+        "rryqeiaegicgeo??",
+        "udosjanyuiuebr??",
+        "vaakojeaietg????????"
+    ]
+
+    with open('enable1.txt') as f:
+        dictionary = [l.strip() for l in f]
+
+    def longest(tiles):
+        longest_found = None
+        for word in dictionary:
+            if scrabble(tiles, word):
+                try:
+                    if len(longest_found) < len(word):
+                        longest_found = word
+                except TypeError:
+                    longest_found = word
+        return longest_found
+
+    for inp in inputs:
+        print('longest("{}") -> "{}"'.format(inp, longest(inp)))
