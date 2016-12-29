@@ -48,3 +48,11 @@ if __name__ == "__main__":
             if can_form(inp, word):
                 print('highest("{}") -> {} ("{}")'.format(inp, score, word))
                 break
+
+    # import fileinput
+    # for line in fileinput.input():
+    #     tiles = line.strip()
+    #     for word, score in word_scores:
+    #         if can_form(tiles, word):
+    #             print('highest("{}") -> {} ("{}")'.format(tiles, score, word))
+    #             break
