@@ -8,7 +8,6 @@
 # 28 December 2016
 
 from operator import itemgetter
-from collections import Counter
 from string import ascii_lowercase
 
 
@@ -21,26 +20,31 @@ def word_score(w):
 
 
 def can_form(tiles, word):
-    return Counter(tiles) & Counter(word) == Counter(word)
-
-
-def find_highest_score(tiles, word_scores):
-    possible_words = ((w, s) for w, s in word_scores.items() if can_form(tiles, w))
-    possible_words = sorted(possible_words, key=itemgetter(1))
-    return possible_words[-1]
+    tiles = list(tiles)
+    for ch in word:
+        if ch not in tiles:
+            return False
+        tiles.remove(ch)
+    return True
 
 
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+    inputs = [
+        "iogsvooely",
+        "seevurtfci",
+        "vepredequi",
+        "umnyeoumcp",
+        "orhvtudmcz",
+        "fyilnprtia"
+    ]
 
     with open('enable1.txt') as f:
-        dictionary = (l.strip() for l in f)
-        word_scores = {w: word_score(w) for w in dictionary}
+        words = (l.strip() for l in f)
+        word_scores = [(w, word_score(w)) for w in words]
+        word_scores.sort(key=itemgetter(1), reverse=True)
 
-    inputs = ["iogsvooely", "seevurtfci", "vepredequi", "umnyeoumcp", "orhvtudmcz", "fyilnprtia"]
     for inp in inputs:
-        hword, hscore = find_highest_score(inp, word_scores)
-        print('highest("{}") -> {} ("{}")'.format(
-            inp, hscore, hword
-        ))
+        for word, score in word_scores:
+            if can_form(inp, word):
+                print('highest("{}") -> {} ("{}")'.format(inp, score, word))
+                break
