@@ -33,10 +33,8 @@ class ConwayGrid(object):
                     continue
                 for r in range(row_idx-1, row_idx+2):
                     for c in range(col_idx-1, col_idx+2):
-                        if r < 0 or r >= len(self.grid):
-                            continue
-                        if c < 0 or c >= len(self.grid[0]):
-                            continue
+                        r = r % len(self.grid)
+                        c = c % len(self.grid[0])
                         if r == row_idx and c == col_idx:
                             continue
                         self.neighbours_grid[r][c] += self.grid[row_idx][col_idx]
@@ -77,12 +75,12 @@ if __name__ == "__main__":
 .......
 .......
 ...#...
-...#...
-...#...
+....#..
+..###..
 .......\
 """
     g = ConwayGrid(beacon)
-    for i in range(10):
+    for i in range(50):
         print(g)
         g.next()
-        sleep(1)
+        sleep(0.5)
