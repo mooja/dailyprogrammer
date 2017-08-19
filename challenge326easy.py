@@ -7,6 +7,7 @@
 #
 # 19 August 2017
 
+import math
 from math import sqrt
 from random import randrange
 
@@ -21,12 +22,12 @@ def is_prime(n):
     return True
 
 
-def is_prime_miller_rabin(n, k=2):
-    d = 2
-    while (n-1) % d == 0:
-        d *= 2
-    d = d // 2
-    r = (n - 1) // d
+def is_prime_miller_rabin(n, k=5):
+    s = 1
+    while (n-1) % (2**s) == 0:
+        s += 1
+    s -= 1
+    d = (n-1) // (2**s)
 
     for _ in range(k):
         a = randrange(2, n - 2)
@@ -35,7 +36,7 @@ def is_prime_miller_rabin(n, k=2):
             continue
 
         witness_loop = False
-        for _ in range(r - 1):
+        for _ in range(s - 1):
             x = pow(x, 2, n)
             if x == 1:
                 return False
@@ -48,14 +49,16 @@ def is_prime_miller_rabin(n, k=2):
     return True
 
 
-def nearest_prime(n):
+def nearest_prime(n, pf=is_prime):
     p1, p2 = n, n
-    while not is_prime(p1):
+    while not pf(p1):
         p1 -= 1
-    while not is_prime(p2):
+    while not pf(p2):
         p2 += 1
     return p1, n, p2
 
 
 if __name__ == '__main__':
-    print(is_prime_miller_rabin(653))
+    import sys
+    n = int(sys.argv[1])
+    print(nearest_prime(n, pf=is_prime_miller_rabin))
