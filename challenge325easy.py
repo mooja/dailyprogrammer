@@ -52,7 +52,7 @@ for idx, color in enumerate(maze[-1]):
         y = len(maze)-1
         que.append((x, y, 0, ''))
 
-visited = []
+visited = {}
 while que:
     x, y, color_seq_idx, history = que.pop()
     if y == 0:
@@ -64,7 +64,7 @@ while que:
             next_color_seq = (color_seq_idx + 1) % len(color_seq)
             next_color = color_seq[next_color_seq]
 
-            if (_x, _y, next_color_seq) in visited:
+            if (_x, _y, next_color_seq) in visited.keys():
                 continue
 
             try:
@@ -74,4 +74,4 @@ while que:
             except IndexError:
                 continue
 
-    visited.append((x, y, color_seq_idx))
+    visited[(x, y, color_seq_idx)] = True
