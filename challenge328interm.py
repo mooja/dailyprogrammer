@@ -10,10 +10,8 @@
 
 def sum_shortest(pyramid):
     num_levels = len(pyramid)
-    for row_idx in reversed(range(num_levels)):
+    for row_idx in reversed(range(num_levels-1)):
         for col_idx, element in enumerate(pyramid[row_idx]):
-            if row_idx == num_levels-1:
-                continue
             child1 = pyramid[row_idx+1][col_idx]
             child2 = pyramid[row_idx+1][col_idx+1]
             pyramid[row_idx][col_idx] = element + min([child1, child2])
